@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Project</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <h1 id="message">Hello, Get Message!</h1>
     
-    <div id="app">
-        <h1>{{ getMessage() }}</h1>
+    <button id="toggleMessage">Toggle Me</button>
+
+    <!-- <div id="app">
+        <h1 id="message">{{ getMessage() }}</h1>
         <ul>
             <p>Name:</p>
             <li>{{employee1.name}}</li>
@@ -22,6 +27,8 @@
         </ul>
 
         <h2>{{employeesFunction()}}</h2>
+
+        <button id="toggleMessage">Toggle Me</button>
     </div>
 
 
@@ -60,6 +67,8 @@
             },  
         }).mount('#app');
         
-    </script>
+    </script> -->
+
+    <script src="index.js" defer></script>  
 </body>
 </html>
