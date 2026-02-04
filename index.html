@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <h1>{{ getMessage() }}</h1>
+        <ul>
+            <p>Name:</p>
+            <li>{{employee1.name}}</li>
+
+            <p>Age:</p>
+            <li>{{employee1.age}}</li>
+
+            <p>location:</p>
+            <li>{{employee1.location}}</li>
+        </ul>
+    
+    </div>
+
+
+    <script> 
+        const { createApp } = Vue;
+        createApp ({
+            setup(){
+                const message = 'Hello, Get Message!';
+                const age = 25; 
+                const employee1 = {
+                    name: "Ken",
+                    age: 21,
+                    location: "RP"
+                };
+
+
+                function getMessage() {
+                    return message.toUpperCase() + " The length of this message is: " + message.length;
+                }
+                return {
+                    age,
+                    employee1,
+                    getMessage
+                };
+            },
+        }).mount('#app');
+        
+    </script>
+</body>
+</html>
