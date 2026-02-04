@@ -21,7 +21,7 @@
             <li>{{employee1.location}}</li>
         </ul>
 
-        <h2>{{employees()}}</h2>
+        <h2>{{employeesFunction()}}</h2>
     </div>
 
 
@@ -48,13 +48,13 @@
                         country: "PH"
                 }
 
-                function employees(){
+                function employeesFunction(){
                         return employee
                 }
                 return {
                     age,
                     employee1,
-                    employees,
+                    employeesFunction,
                     getMessage
                 };
             },  
