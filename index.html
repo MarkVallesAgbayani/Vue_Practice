@@ -20,7 +20,8 @@
             <p>location:</p>
             <li>{{employee1.location}}</li>
         </ul>
-    
+
+        <h2>{{employees()}}</h2>
     </div>
 
 
@@ -40,12 +41,23 @@
                 function getMessage() {
                     return message.toUpperCase() + " The length of this message is: " + message.length;
                 }
+
+                const employee = {
+                        name: "Mark",
+                        age: 21,
+                        country: "PH"
+                }
+
+                function employees(){
+                        return employee
+                }
                 return {
                     age,
                     employee1,
+                    employees,
                     getMessage
                 };
-            },
+            },  
         }).mount('#app');
         
     </script>
