@@ -10,8 +10,37 @@
 
 <body>
     <div id="app">
+
+        <!-- blog url v-bind directives  -->
+        <a v-bind:href="blogUrl" target="_blank">Visit Blog</a>
+
+
+        <!-- v-Once directives -->
+        <h1 v-once>{{ vOnce }}</h1>
+        <h1>{{ vOnce }}</h1>
+        {{ vOnceFunction() }} 
+
+        <!-- v-html directives -->
+        <h1 v-html="getMessage()"></h1>
+
+        <!-- v-show directives -->
+        <p v-show="employee1.hasACard">Salary: {{ employee1.salary }}</p>
+        <p v-show="objectPerson.hasACard" class="text-black">
+            Salary: {{ objectPerson.salary }} 
+        </p>
+
+        <!-- v-if and v-else-if and v-else directives -->
+        <p v-if="objectPerson.hasACard" class="text-black">
+            Salary: {{ objectPerson.salary }} 
+        </p>
+        <p v-else-if="objectPerson.salary < 80000 && objectPerson.yearsOfExperience > 4" class="text-black">
+            You are eligible for a card.
+        </p>
+        <p v-else class="text-black">
+            You are not eligible for a card.
+        </p>
+
         {{ timeOutFunction() }} 
-        <h1 id="message">{{ getMessage() }}</h1>
         <ul>
             <p>Name:</p>
             <li>{{employee1.name}}</li>
@@ -24,15 +53,8 @@
         </ul> 
         <h2>{{employee1.location}} <br>  {{ message }}</h2>
 
-        <h1 v-html="getMessage()"></h1>
 
         <button id="toggleMessage">Toggle Me</button>
-
-        <h1 v-once>{{ vOnce }}</h1>
-        <h1>{{ vOnce }}</h1>
-        {{ vOnceFunction() }} 
-
-        <a v-bind:href="blogUrl" target="_blank">Visit Blog</a>
     </div>
 
 
@@ -53,11 +75,24 @@
                 const message = ref('Hello, Get Message!');
                 const age = 25; 
                 const body = document.body;
+
                 const employee1 = reactive ({
                     name: "Ken",
                     age: 21,
-                    location: "RP"
+                    location: "RP",
+                    salary: 30000,
+                    hasACard: true,
                 });
+
+                const objectPerson = reactive ({
+                    name: "Mark",
+                    age: 21,
+                    location: "USA",
+                    salary: 90000,
+                    hasACard: false,
+                    yearsOfExperience: 10,
+                });
+
 
                 function timeOutFunction () {
                     setTimeout(() => {
@@ -93,7 +128,8 @@
                     timeOutFunction,
                     vOnce,
                     vOnceFunction,
-                    blogUrl
+                    blogUrl,
+                    objectPerson,
                 };
             },  
         }).mount('#app');
