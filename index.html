@@ -9,13 +9,9 @@
 </head>
 
 <body>
-    <!-- <h1 id="message">Hello, Get Message!</h1>
-    
-    <button id="toggleMessage">Toggle Me</button> -->
-
     <div id="app">
-        <!-- {{ timeOutFunction() }}  -->
-        <!-- <h1 id="message">{{ getMessage() }}</h1>
+        {{ timeOutFunction() }} 
+        <h1 id="message">{{ getMessage() }}</h1>
         <ul>
             <p>Name:</p>
             <li>{{employee1.name}}</li>
@@ -25,18 +21,18 @@
 
             <p>location:</p>
             <li>{{employee1.location}}</li>
-        </ul> -->
-        <!-- <h2>{{employee1.location}} <br>  {{ message }}</h2>
+        </ul> 
+        <h2>{{employee1.location}} <br>  {{ message }}</h2>
 
         <h1 v-html="getMessage()"></h1>
--->
-        <!-- <button id="toggleMessage">Toggle Me</button> -->
 
-        <!-- <h1 v-once>{{ vOnce }}</h1>
+        <button id="toggleMessage">Toggle Me</button>
+
+        <h1 v-once>{{ vOnce }}</h1>
         <h1>{{ vOnce }}</h1>
-        {{ vOnceFunction() }} -->
+        {{ vOnceFunction() }} 
 
-        <!-- <a v-bind:href="blogUrl" target="_blank">Visit Blog</a> -->
+        <a v-bind:href="blogUrl" target="_blank">Visit Blog</a>
     </div>
 
 
@@ -45,59 +41,59 @@
         createApp ({
             setup(){
 
-                // const blogUrl = "https://laravel.com/";
+                const blogUrl = "https://laravel.com/";
 
-                // const vOnce = ref("This is v-once directive example.");
-                // function vOnceFunction() {
-                //     setTimeout(() => {
-                //         vOnce.value = "It change because its not v-once!";
-                //     }, 2000);
-                // }
+                const vOnce = ref("This is v-once directive example.");
+                function vOnceFunction() {
+                    setTimeout(() => {
+                        vOnce.value = "It change because its not v-once!";
+                    }, 2000);
+                }
 
-                // const message = ref('Hello, Get Message!');
-                // const age = 25; 
-                // const body = document.body;
-                // const employee1 = reactive ({
-                //     name: "Ken",
-                //     age: 21,
-                //     location: "RP"
-                // });
+                const message = ref('Hello, Get Message!');
+                const age = 25; 
+                const body = document.body;
+                const employee1 = reactive ({
+                    name: "Ken",
+                    age: 21,
+                    location: "RP"
+                });
 
-                // function timeOutFunction () {
-                //     setTimeout(() => {
-                //         employee1.location = "Novaliches";
-                //         employee1.location = employee1.location.toUpperCase();
-                //         message.value = "It change!";
-                //         body.style.backgroundColor = "black";
-                //         body.style.color = "white";
-                //     }, 1000);
-                // }
+                function timeOutFunction () {
+                    setTimeout(() => {
+                        employee1.location = "Novaliches";
+                        employee1.location = employee1.location.toUpperCase();
+                        message.value = "It change!";
+                        body.style.backgroundColor = "black";
+                        body.style.color = "white";
+                    }, 1000);
+                }
 
-                // function getMessage() {
-                //     // return message.toUpperCase() + " The length of this message is: " + message.length;
-                //     return `<h1> <u> ${message.value} </u> </h1>`; // v-html directive is used to render HTML content in Vue. It allows you to insert raw HTML into the DOM. 
-                // }
+                function getMessage() {
+                    // return message.toUpperCase() + " The length of this message is: " + message.length;
+                    return `<h1> <u> ${message.value} </u> </h1>`; // v-html directive is used to render HTML content in Vue. It allows you to insert raw HTML into the DOM. 
+                }
 
-                // const employee = {
-                //         name: "Mark",
-                //         age: 21,
-                //         country: "PH"
-                // }
+                const employee = {
+                        name: "Mark",
+                        age: 21,
+                        country: "PH"
+                }
 
-                // function employeesFunction(){
-                //         return employee
-                // }
+                function employeesFunction(){
+                        return employee
+                }
                 return {
-                    // age,
-                    // employee1,
-                    // employeesFunction,
-                    // getMessage,
-                    // message,
-                    // age,
-                    // timeOutFunction
-                    // vOnce,
-                    // vOnceFunction
-                    // blogUrl
+                    age,
+                    employee1,
+                    employeesFunction,
+                    getMessage,
+                    message,
+                    age,
+                    timeOutFunction,
+                    vOnce,
+                    vOnceFunction,
+                    blogUrl
                 };
             },  
         }).mount('#app');

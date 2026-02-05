@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is for practice coding vue fundamentals</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    
+    <div id="app">
+        {{getDarkMode() }}
+        <h1 class="text-center text-3xl mt-5"> {{ getMessage() }}  {{ message }} </h1>
+
+        <div class="flex justify-center items-center h-100 bg-gray-200 flex-col mt-10 max-w-md mx-auto ">
+                {{ objectPersonFunction() }}
+                <p class="text-black ">Information:</p>
+                <p class="text-black">{{ objectPerson.name }}, {{ objectPerson.age }}, {{ objectPerson.location }}</p>
+        </div>
+    </div>
+
+<script>
+    const { createApp, ref, reactive} = Vue;
+    createApp ({ 
+        setup(){
+
+            const message = ref('Hello, Get Message!');
+            const body = document.body;
+
+            const objectPerson = reactive ({
+                name: "Mark",
+                age: 21,
+                location: "USA"
+            });
+
+            function getMessage () {
+                setTimeout(() => {
+                    message.value = "Hello, This message is changed after 2 seconds!";
+                }, 2000);
+            }
+
+            function getDarkMode() {
+                setTimeout (() => {
+                    body.style.backgroundColor = "red";
+                    body.style.color = "white";
+                }, 2000);
+            }
+
+            function objectPersonFunction() {
+                setTimeout (() => {
+                    objectPerson.name = "Kenny";
+                    objectPerson.age = 22;
+                    objectPerson.location = "RP";
+                }, 2000);
+            }
+            
+            return {
+                message,
+                getMessage,
+                getDarkMode,
+                objectPerson,
+                objectPersonFunction,
+            };
+        },
+    }). mount('#app');
+</script>
+</body>
+</html>
