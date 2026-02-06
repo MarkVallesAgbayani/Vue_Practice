@@ -1,228 +1,293 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Project</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <div id="app">
+    <h3>Array of numbers:</h3>
+    <p v-for="(numbers,index) in arrayOfNumbers">
+        Index: {{index}} - {{ numbers }}
+    </p>
 
-                <h3>Array of numbers:</h3>
-        <p v-for="(numbers,index) in arrayOfNumbers">
-            Index: {{index}} - {{ numbers }}
-        </p>
-        
-        <hr class="mt-5">
-        <h3 class="mt-5 p-3">Employee Projects:</h3>
-        <ul class="p-3">
-            <li class="mb-2" v-for="(project,index) in employees.projects"> 
-            {{index+1}} - The project name is:  {{project.name}}  <br>
-            Description: {{project.description}}
-            </li>
-        </ul>
+    <hr class="mt-5" />
+    <h3 class="mt-5 p-3">Employee Projects:</h3>
+    <ul class="p-3">
+        <li class="mb-2" v-for="(project,index) in employees.projects">
+        {{index+1}} - The project name is: {{project.name}} <br />
+        Description: {{project.description}}
+        </li>
+    </ul>
 
-        <hr>
+    <hr />
 
-        <h3 class="mb-2 mt-5">Key value in an object:</h3>
+    <h3 class="mb-2 mt-5">Key value in an object:</h3>
+    <ul>
+        <li class="mb-2" v-for="(value, key) in employees">
+        {{ key }} : {{ value }}
+        </li>
+    </ul>
+
+    <div>
+        <h3 class="mb-2 mt-5">List your todo in number:</h3>
         <ul>
-            <li class="mb-2" v-for="(value, key) in employees">
-                {{ key }} : {{ value }}
-            </li>
+        <li
+            v-for="yourTodo in todoList.todoListed"
+            :key="yourTodo.description"
+        >
+            {{ yourTodo }}
+            <input
+            class="border-2"
+            type="text"
+            name="todoInput"
+            id="todoInput"
+            />
+        </li>
         </ul>
-
-        <div>
-            <h3 class="mb-2 mt-5">List your todo in number:</h3>
-            <ul>
-                <li v-for="yourTodo in todoList.todoListed" :key="yourTodo.description">{{ yourTodo }}
-                    <input class="border-2 " type="text" name="todoInput" id="todoInput">
-                </li>
-            </ul>
-        </div>
-        {{ shuffleTodoList() }}
-
-
-
-        <!-- blog url v-bind directives  -->
-        <a v-bind:href="blogUrl" target="_blank">Visit Blog</a>
-
-
-        <!-- v-Once directives -->
-        <h1 v-once>{{ vOnce }}</h1>
-        <h1>{{ vOnce }}</h1>
-        {{ vOnceFunction() }} 
-
-        <!-- v-html directives -->
-        <h1 v-html="getMessage()"></h1>
-
-        <!-- v-show directives -->
-        <p v-show="employee1.hasACard">Salary: {{ employee1.salary }}</p>
-        <p v-show="objectPerson.hasACard" class="text-black">
-            Salary: {{ objectPerson.salary }} 
-        </p>
-
-        <!-- v-if and v-else-if and v-else directives -->
-        <p v-if="objectPerson.hasACard" class="text-black">
-            Salary: {{ objectPerson.salary }} 
-        </p>
-        <p v-else-if="objectPerson.salary < 80000 && objectPerson.yearsOfExperience > 4" class="text-black">
-            You are eligible for a card.
-        </p>
-        <p v-else class="text-black">
-            You are not eligible for a card.
-        </p>
-
-        {{ timeOutFunction() }} 
-        <ul>
-            <p>Name:</p>
-            <li>{{employee1.name}}</li>
-
-            <p>Age:</p>
-            <li>{{employee1.age}}</li>
-
-            <p>location:</p>
-            <li>{{employee1.location}}</li>
-        </ul> 
-        <h2>{{employee1.location}} <br>  {{ message }}</h2>
-
-
-        <button id="toggleMessage">Toggle Me</button>
-
-
+        <button @click="shuffleTodoList" type="button">
+        Shuffle Todo List
+        </button>
     </div>
 
+    <!-- blog url v-bind directives  -->
+    <a v-bind:href="blogUrl" target="_blank">Visit Blog</a>
 
-    <script> 
-        const { createApp, ref, reactive} = Vue;
-        createApp ({
-            setup(){
+    <!-- v-Once directives -->
+    <h1 v-once>{{ vOnce }}</h1>
+    <h1>{{ vOnce }}</h1>
+    {{ vOnceFunction() }}
 
-                const blogUrl = "https://laravel.com/";
+    <!-- v-html directives -->
+    <h1 v-html="getMessage()"></h1>
 
-                const vOnce = ref("This is v-once directive example.");
-                function vOnceFunction() {
-                    setTimeout(() => {
-                        vOnce.value = "It change because its not v-once!";
-                    }, 2000);
-                }
+    <!-- v-show directives -->
+    <p v-show="employee1.hasACard">Salary: {{ employee1.salary }}</p>
+    <p v-show="objectPerson.hasACard" class="text-black">
+        Salary: {{ objectPerson.salary }}
+    </p>
 
-                const message = ref('Hello, Get Message!');
-                const age = 25; 
-                const body = document.body;
+    <!-- v-if and v-else-if and v-else directives -->
+    <p v-if="objectPerson.hasACard" class="text-black">
+        Salary: {{ objectPerson.salary }}
+    </p>
+    <p
+        v-else-if="objectPerson.salary < 80000 && objectPerson.yearsOfExperience > 4"
+        class="text-black"
+    >
+        You are eligible for a card.
+    </p>
+    <p v-else class="text-black">You are not eligible for a card.</p>
 
-                const employee1 = reactive ({
-                    name: "Ken",
-                    age: 21,
-                    location: "RP",
-                    salary: 30000,
-                    hasACard: true,
-                });
+    {{ timeOutFunction() }}
+    <ul>
+        <p>Name:</p>
+        <li>{{employee1.name}}</li>
 
-                const objectPerson = reactive ({
-                    name: "Mark",
-                    age: 21,
-                    location: "USA",
-                    salary: 90000,
-                    hasACard: false,
-                    yearsOfExperience: 10,
-                });
+        <p>Age:</p>
+        <li>{{employee1.age}}</li>
 
+        <p>location:</p>
+        <li>{{employee1.location}}</li>
+    </ul>
+    <h2>
+        {{employee1.location}} <br />
+        {{ message }}
+    </h2>
 
-                function timeOutFunction () {
-                    setTimeout(() => {
-                        employee1.location = "Novaliches";
-                        employee1.location = employee1.location.toUpperCase();
-                        message.value = "It change!";
-                        body.style.backgroundColor = "black";
-                        body.style.color = "white";
-                    }, 1000);
-                }
+    <button id="toggleMessage">Toggle Me</button>
 
-                function getMessage() {
-                    // return message.toUpperCase() + " The length of this message is: " + message.length;
-                    return `<h1> <u> ${message.value} </u> </h1>`; // v-html directive is used to render HTML content in Vue. It allows you to insert raw HTML into the DOM. 
-                }
+    <h1>List of Employees</h1>
+    <div>
+        <ul v-for="employees in listOfEmployees" :key="employees.name">
+        <li class="mb-5 p-3" v-if="showDetails && employees.salary >=70000">
+            {{ employees.name}} - Salary: {{ employees.salary}}
+        </li>
+        <li
+            class="p-3"
+            v-show="showDetails && employees.yearsOfExperience >=3"
+        >
+            {{ employees.name}} - {{ employees.yearsOfExperience }} years of
+            experience
+        </li>
+        </ul>
+        <button
+        class="p-3 mt-10 hover:cursor-pointer"
+        @click="shuffle"
+        type="button"
+        >
+        Shuffle
+        </button>
+        <button
+        class="p-3 mt-10 hover:cursor-pointer"
+        @click="showDetails = !showDetails"
+        type="button"
+        >
+        Show
+        </button>
+    </div>
+    </div>
 
-                const employee = {
-                        name: "Mark",
-                        age: 21,
-                        country: "PH"
-                }
-                            const todoList = reactive({
-                todoListed: [
-                    {
-                        todo1: "Go to the gym",
-                        description: "Exercise is important."
-                    },
+    <script>
+    const { createApp, ref, reactive } = Vue;
+    createApp({
+        setup() {
+        const blogUrl = "https://laravel.com/";
 
-                    {
-                        todo2: "Buy groceries",
-                        description: "Don't forget to buy milk and eggs."
-                    },
-                    {
-                        todo3: "Finish Vue.js project",
-                        description: "Complete the project by the end of the week."
+        const vOnce = ref("This is v-once directive example.");
+        function vOnceFunction() {
+            setTimeout(() => {
+            vOnce.value = "It change because its not v-once!";
+            }, 2000);
+        }
 
-                    }
-                ]
-            })
+        const message = ref("Hello, Get Message!");
+        const age = 25;
+        const body = document.body;
 
-            function shuffleTodoList (){
-                setTimeout(() => {
-                    todoList.todoListed.sort(() => Math.random() - 0.5 );
-                }, 3000);
-            }
+        const employee1 = reactive({
+            name: "Ken",
+            age: 21,
+            location: "RP",
+            salary: 30000,
+            hasACard: true,
+        });
 
-            let arrayOfNumbers = ref([1,2,3,4,5,6,7,8,9,10]);
+        const objectPerson = reactive({
+            name: "Mark",
+            age: 21,
+            location: "USA",
+            salary: 90000,
+            hasACard: false,
+            yearsOfExperience: 10,
+        });
 
-            const employees = reactive({
-                name: 'Mark Agbayani',
-                age: 30,
-                position: 'Software Engineer',
-                projects: [
-                    {
-                        name: 'Project A',
-                        description: 'A web application for managing tasks.'
-                    },
-                    {
-                        name: 'Project B',
-                        description: 'A web application for managing HR.'
-                    },
-                    {
-                        name: 'Project C',
-                        description: 'A web application for managing Jobs.'
-                    }
-                ]
-            });
+        const showDetails = ref(true);
+        const listOfEmployees = reactive([
+            {
+            name: "Mark Agbayani",
+            age: 21,
+            position: "Software Engineer",
+            salary: 70000,
+            yearsOfExperience: 3,
+            },
+            {
+            name: "Kenny Soriano",
+            age: 22,
+            position: "Frontend Developer",
+            salary: 60000,
+            yearsOfExperience: 3,
+            },
+            {
+            name: "Zachary Estacio",
+            age: 22,
+            position: "Backend Developer",
+            salary: 60000,
+            yearsOfExperience: 3,
+            },
+        ]);
 
+        function shuffle() {
+            listOfEmployees.sort(() => Math.random() - 0.5);
+        }
 
-                function employeesFunction(){
-                        return employee
-                }
-                return {
-                    age,
-                    employee1,
-                    employeesFunction,
-                    getMessage,
-                    message,
-                    age,
-                    timeOutFunction,
-                    vOnce,
-                    vOnceFunction,
-                    blogUrl,
-                    objectPerson,
-                    arrayOfNumbers,
-                    employees,
-                    todoList,
-                    shuffleTodoList
+        function timeOutFunction() {
+            setTimeout(() => {
+            employee1.location = "Novaliches";
+            employee1.location = employee1.location.toUpperCase();
+            message.value = "It change!";
+            body.style.backgroundColor = "black";
+            body.style.color = "white";
+            }, 1000);
+        }
 
-                };
-            },  
-        }).mount('#app');
-        
+        function getMessage() {
+            // return message.toUpperCase() + " The length of this message is: " + message.length;
+            return `<h1> <u> ${message.value} </u> </h1>`; // v-html directive is used to render HTML content in Vue. It allows you to insert raw HTML into the DOM.
+        }
+
+        const employee = {
+            name: "Mark",
+            age: 21,
+            country: "PH",
+        };
+
+        const todoList = reactive({
+            todoListed: [
+            {
+                todo1: "Go to the gym",
+                description: "Exercise is important.",
+            },
+
+            {
+                todo2: "Buy groceries",
+                description: "Don't forget to buy milk and eggs.",
+            },
+            {
+                todo3: "Finish Vue.js project",
+                description: "Complete the project by the end of the week.",
+            },
+            ],
+        });
+
+        function shuffleTodoList() {
+            setTimeout(() => {
+            todoList.todoListed.sort(() => Math.random() - 0.5);
+            }, 3000);
+        }
+
+        let arrayOfNumbers = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+        const employees = reactive({
+            name: "Mark Agbayani",
+            age: 30,
+            position: "Software Engineer",
+            projects: [
+            {
+                name: "Project A",
+                description: "A web application for managing tasks.",
+            },
+            {
+                name: "Project B",
+                description: "A web application for managing HR.",
+            },
+            {
+                name: "Project C",
+                description: "A web application for managing Jobs.",
+            },
+            ],
+        });
+
+        function shuffleTodoList() {
+            todoList.todoListed.sort(() => Math.random() - 0.5);
+        }
+
+        function employeesFunction() {
+            return employee;
+        }
+        return {
+            age,
+            employee1,
+            employeesFunction,
+            getMessage,
+            message,
+            age,
+            timeOutFunction,
+            vOnce,
+            vOnceFunction,
+            blogUrl,
+            objectPerson,
+            arrayOfNumbers,
+            employees,
+            todoList,
+            shuffleTodoList,
+        };
+        },
+    }).mount("#app");
     </script>
 
     <!-- <script src="index.js" defer></script>   -->
